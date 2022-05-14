@@ -57,7 +57,7 @@ router.get("/cat", ensureApiKey, (req, res) => {
       let random = Math.floor(Math.random() * files.length);
 
       res.send({
-        image: `${process.env.host}/imgs/cats/${files[random]}`,
+        image: `${process.env.HOST}/imgs/cats/${files[random]}`,
         response_time: `${Math.floor(Math.random() * (1000 - 500) + 500)}ms`,
         status: 200,
       });
