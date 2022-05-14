@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="//unpkg.com/flowbite@1.4.5/dist/flowbite.js"></script>
+    <link
+      rel="stylesheet"
+      href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
+    />
+    <link rel="stylesheet" href="/tailwindcss/index.css" />
+    <title>Api Documentation</title>
+  </head>
+  <body class="bg-slate-700">
+    <%- include("./nav.ejs") %>
+
+    <main class="container mx-auto px-4 py-8">
+      <div>
+        <h1 class="title">API Documentation</h1>
+
+        <div class="bg-slate-800 text-white px-6 py-6 rounded-md">
+          <div class="flex flex-col">
+            <div class="text-sm mb-2">
+              <p>Base_url: <code><%= host %> </code></p>
+              <p>Token query: <code>token=YOUR_TOKEN_GOES_HERE</code></p>
+            </div>
+
+            <hr />
+
+            <div id="endpoints"></div>
+
+            <hr />
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <script>
+      let host = "http://localhost:3000";
+      let endpoints = [
+        {
+          path: "/api/random",
+          method: "GET",
+          required: true,
+          description: "Get some random content",
+        },
+
+        {
+          path: "/api/cat",
+          method: "GET",
+          required: true,
+          description: "Get a random cat image url",
+        },
+      ];
+      let endpointsDiv = document.getElementById("endpoints");
+
+      endpoints.map((endpoint) => {
+        let endpointDiv = document.createElement("div");
+        endpointDiv.className = "mt-3";
+
+        let endpointTitle = document.createElement("h2");
+        endpointTitle.className = "text-sm text-code mb-2";
+        endpointTitle.innerText = endpoint.path;
+
+        let endpointDescription = document.createElement("p");
+        endpointDescription.className = "text-[12px] mb-2";
+        endpointDescription.innerText = endpoint.description;
+
+        let endpointMethod = document.createElement("p");
+        endpointMethod.className = "text-[12px] text-gray-200 mb-2";
+        endpointMethod.innerText = `Method: ${endpoint.method}`;
+
+        let endpointRequired = document.createElement("p");
+        endpointRequired.className = "text-[12px] text-gray-200 mb-2";
+        endpointRequired.innerText = `Token required: ${endpoint.required}`;
+
+        endpointDiv.appendChild(endpointTitle);
+        endpointDiv.appendChild(endpointDescription);
+        endpointDiv.appendChild(endpointMethod);
+        endpointDiv.appendChild(endpointRequired);
+
+        endpointsDiv.appendChild(endpointDiv);
+      });
+    </script>
+  </body>
+</html>

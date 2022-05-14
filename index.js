@@ -4,6 +4,7 @@ const app = express();
 const mongoose = require("mongoose");
 const session = require("express-session");
 const flush = require("connect-flash");
+const cors = require("cors");
 
 // Database stuff
 
@@ -24,13 +25,17 @@ app.use(
   })
 );
 
+app.use(
+  cors({
+    origin: "*",
+    methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+    credentials: true,
+  })
+);
+
 app.use(flush());
-app.get("/", (req, res) => {
-  res.render("index", {
-    message: req.flash("message"),
-  });
-});
 app.use("/api", require("./routes/api"));
+app.use("/", require("./routes/index"));
 
 app.listen(process.env.PORT, () => {
   console.log("Server is running on port 3000");

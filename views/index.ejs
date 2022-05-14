@@ -4,80 +4,96 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <script src="//cdn.tailwindcss.com"></script>
     <script src="//unpkg.com/flowbite@1.4.5/dist/flowbite.js"></script>
     <link
       rel="stylesheet"
       href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
     />
+    <link rel="stylesheet" href="/tailwindcss/index.css" />
     <title>API-key</title>
   </head>
   <body class="bg-slate-700">
     <%- include("./nav.ejs") %>
 
     <main class="container mx-auto px-4 py-8">
-      <h1 class="text-2xl font-bold text-center text-white">
-        Get an API token
-      </h1>
+      <h1 class="title text-center">Get an API token</h1>
       <p class="text-center text-white">
         You can use this token to access the API.
       </p>
       <div class="flex flex-wrap justify-center">
         <div class="w-full md:w-1/2 p-4">
-          <form action="/api/create" method="POST">
+          <form action="/api" method="POST">
             <div class="mb-4">
-              <label
-                class="block text-gray-300 text-sm font-bold mb-2"
-                for="email"
-              >
-                Your email address.
-              </label>
+              <label for="email"> Your email address. </label>
               <input
-                class="
-                  shadow
-                  appearance-none
-                  border
-                  rounded
-                  w-full
-                  py-2
-                  px-3
-                  text-gray-700
-                  leading-tight
-                  focus:outline-none focus:shadow-outline
-                "
+                class="form-control"
                 id="email"
                 name="email"
                 type="email"
-                placeholder="Your email address"
+                placeholder="Enter your email address"
+                onkeyup="checkEmail(this)"
                 required
               />
             </div>
 
-            <button
-              type="submit"
-              class="
-                bg-blue-500
-                hover:bg-blue-600
-                text-white
-                font-bold
-                py-2
-                px-4
-                rounded
-                transition-all
-                focus:ring-2
-              "
-            >
+            <button type="submit" id="submit" class="btn-blue" disabled>
               Get API token
             </button>
 
-            <% if (message.length > 0) { %>
-            <div class="text-green-500 text-sm font-bold mt-3">
-              <%- message %>
+            <div id="error" class="error hidden">
+              Please enter a valid email address.
             </div>
+
+            <% if (message.length > 0) { %>
+            <div class="success"><%- message %></div>
+            <% } %> <% if (message_error.length > 0) { %>
+
+            <div class="error"><%- message_error %></div>
+
             <% } %>
           </form>
         </div>
       </div>
     </main>
+
+    <div
+      class="
+        container
+        mx-auto
+        text-center
+        bg-slate-800
+        mb-7
+        px-4
+        py-8
+        md:rounded-lg
+      "
+    >
+      <div class="space-y-2 md:space-y-0">
+        <a href="/check" class="btn-blue block md:inline-block">
+          Check API tokens
+        </a>
+        <a href="/docs" class="btn-green block md:inline-block">
+          Read API documentation
+        </a>
+      </div>
+    </div>
+
+    <script>
+      const submit = document.getElementById("submit");
+      const error = document.getElementById("error");
+
+      function checkEmail(email) {
+        if (email.value == "") {
+          submit.disabled = true;
+          error.classList.remove("hidden");
+        } else if (email.value.includes("@")) {
+          submit.disabled = false;
+          error.classList.add("hidden");
+        } else {
+          submit.disabled = true;
+          error.classList.remove("hidden");
+        }
+      }
+    </script>
   </body>
 </html>

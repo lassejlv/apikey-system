@@ -6,7 +6,12 @@ const ApiKeySchema = new mongoose.Schema({
     required: true,
     unique: true,
   },
-  email: String,
+  email: {
+    type: String,
+    required: true,
+    unique: true,
+  },
+
   createdAt: {
     type: Date,
     default: Date.now,
