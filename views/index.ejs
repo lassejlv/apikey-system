@@ -5,60 +5,79 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script src="//cdn.tailwindcss.com"></script>
+    <script src="//unpkg.com/flowbite@1.4.5/dist/flowbite.js"></script>
+    <link
+      rel="stylesheet"
+      href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
+    />
     <title>API-key</title>
   </head>
-  <body class="bg-slate-900">
-    <form
-      class="shadow-md px-8 pt-6 pb-8 mb-4 min-h-screen"
-      action="/api/create"
-      method="POST"
-    >
-      <div class="mb-4">
-        <label class="block text-gray-700 text-sm font-bold mb-2" for="email">
-          Email
-        </label>
-        <input
-          class="
-            shadow
-            appearance-none
-            border
-            rounded
-            w-full
-            py-2
-            px-3
-            text-gray-700
-            leading-tight
-            focus:outline-none focus:shadow-outline
-          "
-          id="email"
-          name="email"
-          type="email"
-          placeholder="Email"
-        />
-      </div>
-      <div class="mb-6">
-        <button
-          class="
-            bg-blue-500
-            hover:bg-blue-700
-            text-white
-            font-bold
-            py-2
-            px-4
-            rounded
-            focus:outline-none focus:shadow-outline
-          "
-          type="submit"
-        >
-          Create key
-        </button>
-      </div>
+  <body class="bg-slate-700">
+    <%- include("./nav.ejs") %>
 
-      <% if (message.length > 0) { %>
-      <div class="bg-green-600 text-white font-bold rounded-b px-4 py-3">
-        <%- message %>
+    <main class="container mx-auto px-4 py-8">
+      <h1 class="text-2xl font-bold text-center text-white">
+        Get an API token
+      </h1>
+      <p class="text-center text-white">
+        You can use this token to access the API.
+      </p>
+      <div class="flex flex-wrap justify-center">
+        <div class="w-full md:w-1/2 p-4">
+          <form action="/api/create" method="POST">
+            <div class="mb-4">
+              <label
+                class="block text-gray-300 text-sm font-bold mb-2"
+                for="email"
+              >
+                Your email address.
+              </label>
+              <input
+                class="
+                  shadow
+                  appearance-none
+                  border
+                  rounded
+                  w-full
+                  py-2
+                  px-3
+                  text-gray-700
+                  leading-tight
+                  focus:outline-none focus:shadow-outline
+                "
+                id="email"
+                name="email"
+                type="email"
+                placeholder="Your email address"
+                required
+              />
+            </div>
+
+            <button
+              type="submit"
+              class="
+                bg-blue-500
+                hover:bg-blue-600
+                text-white
+                font-bold
+                py-2
+                px-4
+                rounded
+                transition-all
+                focus:ring-2
+              "
+            >
+              Get API token
+            </button>
+
+            <% if (message.length > 0) { %>
+            <div class="text-green-500 text-sm font-bold mt-3">
+              <%- message %>
+            </div>
+            <% } %>
+          </form>
+        </div>
       </div>
-      <% } %>
-    </form>
+    </main>
   </body>
 </html>

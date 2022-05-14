@@ -1,6 +1,7 @@
 const router = require("express").Router();
 const { generate } = require("yourid");
 const ApiKey = require("../models/ApiKey");
+const { ensureApiKey } = require("../middleware/ensure");
 
 router.get("/", (req, res) => {
   res.send({
@@ -25,46 +26,24 @@ router.post("/create", (req, res) => {
         status: 500,
       });
     } else {
-      req.flash("message", `API key created! <strong>${apiKey.key}</strong>`);
+      req.flash(
+        "message",
+        `API key created! <strong class="text-gray-300">${apiKey.key}</strong>`
+      );
       res.redirect("/");
     }
   });
 });
 
-router.get("/random", (req, res) => {
+router.get("/random", ensureApiKey, (req, res) => {
   let random = ["Facebook is cool", "Twitter is cool", "Instagram is cool"];
 
   let randomData = Math.floor(Math.random() * random.length);
 
-  const { token } = req.query;
-
-  if (token) {
-    ApiKey.findOne({ key: token }, (err, apiKey) => {
-      if (err) {
-        res.send({
-          message: "Error finding API key",
-          status: 500,
-        });
-      } else {
-        if (apiKey) {
-          res.send({
-            message: random[randomData],
-            status: 200,
-          });
-        } else {
-          res.send({
-            message: "Invalid API key",
-            status: 401,
-          });
-        }
-      }
-    });
-  } else {
-    res.send({
-      message: "Please provide an API key",
-      status: 401,
-    });
-  }
+  res.send({
+    message: random[randomData],
+    status: 200,
+  });
 });
 
 module.exports = router;
