@@ -16,26 +16,18 @@ router.get("/docs", (req, res) => {
 });
 
 router.get("/check", (req, res) => {
-  ApiKey.findOne({ key: req.query.key }, (err, apiKey) => {
+  ApiKey.findOne({ key: req.query.token }, (err, apiKey) => {
     if (err) {
       console.log(err);
     } else {
       if (apiKey) {
-        res.send({
-          message: "Key is valid",
-          infomation: {
-            key: apiKey.key,
-            createdAt: moment(apiKey.createdAt).format("Do MMMM YYYY"),
-          },
-          response_time: `${Math.floor(Math.random() * (1000 - 500) + 500)}ms`,
-          status: 200,
+        res.render("check", {
+          token: apiKey.key,
+          valid: true,
+          created: moment(apiKey.createdAt).format("Do MMMM YYYY"),
         });
       } else {
-        res.send({
-          message: "Key is invalid",
-          response_time: `${Math.floor(Math.random() * (1000 - 500) + 500)}ms`,
-          status: 401,
-        });
+        res.redirect("/");
       }
     }
   });

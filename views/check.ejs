@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="//unpkg.com/flowbite@1.4.5/dist/flowbite.js"></script>
+    <link
+      rel="stylesheet"
+      href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
+    />
+    <link rel="stylesheet" href="/tailwindcss/index.css" />
+    <title>Check API token</title>
+  </head>
+  <body class="bg-slate-700">
+    <%- include("./nav.ejs") %>
+
+    <main class="container mx-auto px-4 py-8">
+      <div>
+        <h1 class="title">Check API token</h1>
+
+        <p class="text-gray-100 mt-8">
+          Token:
+          <span class="font-bold"><%= token %> </span>
+        </p>
+        <p class="text-gray-100">
+          Valid:
+          <span class="font-bold"><%= valid %></span>
+        </p>
+        <p class="text-gray-100">
+          Created At:
+          <span class="font-bold"><%= created %></span>
+        </p>
+      </div>
+    </main>
+  </body>
+</html>

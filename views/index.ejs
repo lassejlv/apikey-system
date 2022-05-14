@@ -69,7 +69,10 @@
       "
     >
       <div class="space-y-2 md:space-y-0">
-        <a href="/check" class="btn-blue block md:inline-block">
+        <a
+          class="btn-blue block md:inline-block"
+          data-modal-toggle="check-modal"
+        >
           Check API tokens
         </a>
         <a href="/docs" class="btn-green block md:inline-block">
@@ -77,6 +80,8 @@
         </a>
       </div>
     </div>
+
+    <%- include("./_check.ejs") %>
 
     <script>
       const submit = document.getElementById("submit");
@@ -92,6 +97,25 @@
         } else {
           submit.disabled = true;
           error.classList.remove("hidden");
+        }
+      }
+
+      const submitCheck = document.getElementById("check");
+      const errorCheck = document.getElementById("error-token");
+
+      function checkToken(token) {
+        if (token.value == "") {
+          submitCheck.disabled = true;
+          errorCheck.classList.remove("hidden");
+        } else if (token.value.length < 20) {
+          submitCheck.disabled = true;
+          errorCheck.classList.remove("hidden");
+        } else if (token.value.match(/[a-z]/i)) {
+          submitCheck.disabled = true;
+          errorCheck.classList.remove("hidden");
+        } else {
+          submitCheck.disabled = false;
+          errorCheck.classList.add("hidden");
         }
       }
     </script>
