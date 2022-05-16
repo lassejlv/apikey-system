@@ -4,6 +4,7 @@ const ApiKey = require("../models/ApiKey");
 const { ensureApiKey } = require("../middleware/ensure");
 const fs = require("fs");
 const path = require("path");
+const fetch = require("node-fetch");
 
 router.get("/", (req, res) => {
   res.send({
@@ -50,19 +51,15 @@ router.get("/random", ensureApiKey, (req, res) => {
 });
 
 router.get("/cat", ensureApiKey, (req, res) => {
-  fs.readdir(path.join(__dirname, "../public/imgs/cats"), (err, files) => {
-    if (err) {
-      console.log(err);
-    } else {
-      let random = Math.floor(Math.random() * files.length);
-
+  fetch("https://aws.random.cat/meow")
+    .then((response) => response.json())
+    .then((data) => {
       res.send({
-        image: `${process.env.HOST}/imgs/cats/${files[random]}`,
+        file: data.file,
         response_time: `${Math.floor(Math.random() * (1000 - 500) + 500)}ms`,
         status: 200,
       });
-    }
-  });
+    });
 });
 
 module.exports = router;
