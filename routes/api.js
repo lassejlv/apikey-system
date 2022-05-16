@@ -51,13 +51,24 @@ router.get("/random", ensureApiKey, (req, res) => {
 });
 
 router.get("/cat", ensureApiKey, (req, res) => {
-  fetch("https://aws.random.cat/meow")
+  fetch("https://api.thecatapi.com/v1/images/search")
     .then((response) => response.json())
-    .then((data) => {
-      res.send({
-        file: data.file,
-        response_time: `${Math.floor(Math.random() * (1000 - 500) + 500)}ms`,
-        status: 200,
+    .then((data) =>
+      data.map((cat) => {
+        res.send({
+          file: cat.url,
+          response_time: `${Math.floor(Math.random() * (1000 - 500) + 500)}ms`,
+          status: 200,
+        });
+      })
+    )
+    .catch((err) => {
+      res.json({
+        errors: {
+          message: "Something went wrong, please try again later.",
+          response_time: `${Math.floor(Math.random() * (1000 - 500) + 500)}ms`,
+          status: 500,
+        },
       });
     });
 });
