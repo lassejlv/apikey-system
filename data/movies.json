@@ -1,0 +1,73 @@
+[
+  {
+    "id": "1",
+    "title": "The Shawshank Redemption",
+    "year": "1994",
+    "genres": ["Crime", "Drama"],
+    "ratings": [10, 1, 9, 10, 6, 7, 8, 7, 1, 10],
+    "poster": "MV5BODU4MjU4NjIwNl5BMl5BanBnXkFtZTgwMDU2MjEyMDE@._V1_SX300.jpg",
+    "contentRating": "R",
+    "duration": "142 min",
+    "releaseDate": "1994-09-23",
+    "averageRating": 0,
+    "originalTitle": "",
+    "storyline": "Two imprisoned"
+  },
+
+  {
+    "id": "2",
+    "title": "The Godfather",
+    "year": "1972",
+    "genres": ["Crime", "Drama"],
+    "ratings": [9, 10, 9, 10, 6, 7, 8, 7, 1, 10],
+    "poster": "MV5BM2MyNjYxNmUtYTAwNi00MTYxLWEzNjctYzZlY2E5MzNkNWIwXkEyXkFqcGdeQXVyNzkwMjQ5NzM@._V1_SX300.jpg",
+    "contentRating": "",
+    "duration": "175 min",
+    "releaseDate": "1972-03-14",
+    "averageRating": 0,
+    "originalTitle": "",
+    "storyline": "The aging patriarch of an organized crime dynasty transfers control of his clandestine empire to his reluctant son."
+  },
+  {
+    "id": "3",
+    "title": "The Godfather: Part II",
+    "year": "1974",
+    "genres": ["Crime", "Drama"],
+    "ratings": [9, 10, 9, 10, 6, 7, 8, 7, 1, 10],
+    "poster": "MV5BM2MyNjYxNmUtYTAwNi00MTYxLWEzNjctYzZlY2E5MzNkNWIwXkEyXkFqcGdeQXVyNzkwMjQ5NzM@._V1_SX300.jpg",
+    "contentRating": "",
+    "duration": "175 min",
+    "releaseDate": "1972-03-14",
+    "averageRating": 0,
+    "originalTitle": "",
+    "storyline": "The Godfather: Part II"
+  },
+  {
+    "id": "4",
+    "title": "The Dark Knight",
+    "year": "2008",
+    "genres": ["Action", "Crime", "Drama"],
+    "ratings": [9, 10, 9, 10, 6, 7, 8, 7, 1, 10],
+    "poster": "MV5BMTMxNTMwODM0NF5BMl5BanBnXkFtZTcwODAyMTk2Mw@@._V1_SX300.jpg",
+    "contentRating": "",
+    "duration": "152 min",
+    "releaseDate": "2008-07-16",
+    "averageRating": 0,
+    "originalTitle": "",
+    "storyline": "When the menace known as the Joker wreaks havoc and chaos on the people of Gotham, the caped crusader must come to terms with one of the greatest psychological tests of his ability to fight injustice."
+  },
+  {
+    "id": "5",
+    "title": "12 Angry",
+    "year": "2004",
+    "genres": ["Crime", "Drama"],
+    "ratings": [9, 10, 9, 10, 6, 7, 8, 7, 1, 10],
+    "poster": "MV5BMTQwNTU3MzA1M15BMl5BanBnXkFtZTcwMDAwMzE4Mw@@._V1_SX300.jpg",
+    "contentRating": "",
+    "duration": "175 min",
+    "releaseDate": "1972-03-14",
+    "averageRating": 0,
+    "originalTitle": "",
+    "storyline": "The Godfather: Part II"
+  }
+]

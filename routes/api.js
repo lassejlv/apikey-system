@@ -73,4 +73,26 @@ router.get("/cat", ensureApiKey, (req, res) => {
     });
 });
 
+router.get("/movies", ensureApiKey, (req, res) => {
+  let pathToMovies = path.join(__dirname, "../data/movies.json");
+
+  fs.readFile(pathToMovies, "utf8", (err, random_movies) => {
+    if (err) {
+      res.json({
+        errors: {
+          message: "Something went wrong, please try again later.",
+          response_time: `${Math.floor(Math.random() * (1000 - 500) + 500)}ms`,
+          status: 500,
+        },
+      });
+    } else {
+      res.send({
+        data: JSON.parse(random_movies),
+        response_time: `${Math.floor(Math.random() * (1000 - 500) + 500)}ms`,
+        status: 200,
+      });
+    }
+  });
+});
+
 module.exports = router;
