@@ -22,7 +22,7 @@
         <div class="bg-slate-800 text-white px-6 py-6 rounded-md">
           <div class="flex flex-col">
             <div class="text-sm mb-2">
-              <p>Base_url: <code><%= host %> </code></p>
+              <p>Base_url: <code><%= host %>/api</code></p>
               <p>Token query: <code>token=YOUR_TOKEN_GOES_HERE</code></p>
             </div>
 
@@ -40,17 +40,24 @@
       let host = "<%= host %>";
       let endpoints = [
         {
-          path: "/api/random",
+          path: "/random",
           method: "GET",
           required: true,
           description: "Get some random content",
         },
 
         {
-          path: "/api/cat",
+          path: "/cat",
           method: "GET",
           required: true,
           description: "Get a random cat image url",
+        },
+
+        {
+          path: "/movies",
+          method: "GET",
+          required: true,
+          description: "Get a random movie data",
         },
       ];
       let endpointsDiv = document.getElementById("endpoints");
