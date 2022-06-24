@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node index.js",
     "dev": "nodemon index.js",
-    "build": "npx tailwindcss -i ./public/index.css -o ./public/tailwindcss/index.css --watch"
+    "build": "pnpx tailwindcss -i ./public/index.css -o ./public/tailwindcss/index.css --watch"
   },
   "keywords": [],
   "author": "",

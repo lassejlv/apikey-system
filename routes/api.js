@@ -39,25 +39,28 @@ router.post("/", (req, res) => {
 });
 
 router.get("/random", ensureApiKey, (req, res) => {
+  let time = Date.now();
   let random = ["Facebook is cool", "Twitter is cool", "Instagram is cool"];
 
   let randomData = Math.floor(Math.random() * random.length);
 
   res.send({
     message: random[randomData],
-    response_time: `${Math.floor(Math.random() * (1000 - 500) + 500)}ms`,
+    response_time: `${Date.now() - time}ms`,
     status: 200,
   });
 });
 
 router.get("/cat", ensureApiKey, (req, res) => {
+  let time = Date.now();
+
   fetch("https://api.thecatapi.com/v1/images/search")
     .then((response) => response.json())
     .then((data) =>
       data.map((cat) => {
         res.send({
           file: cat.url,
-          response_time: `${Math.floor(Math.random() * (1000 - 500) + 500)}ms`,
+          response_time: `${Date.now() - time}ms`,
           status: 200,
         });
       })
@@ -66,7 +69,7 @@ router.get("/cat", ensureApiKey, (req, res) => {
       res.json({
         errors: {
           message: "Something went wrong, please try again later.",
-          response_time: `${Math.floor(Math.random() * (1000 - 500) + 500)}ms`,
+          response_time: `${Date.now() - time}ms`,
           status: 500,
         },
       });
@@ -74,6 +77,7 @@ router.get("/cat", ensureApiKey, (req, res) => {
 });
 
 router.get("/movies", ensureApiKey, (req, res) => {
+  let time = Date.now();
   let pathToMovies = path.join(__dirname, "../data/movies.json");
 
   fs.readFile(pathToMovies, "utf8", (err, random_movies) => {
@@ -81,7 +85,7 @@ router.get("/movies", ensureApiKey, (req, res) => {
       res.json({
         errors: {
           message: "Something went wrong, please try again later.",
-          response_time: `${Math.floor(Math.random() * (1000 - 500) + 500)}ms`,
+          response_time: `${Date.now() - time}ms`,
           status: 500,
         },
       });

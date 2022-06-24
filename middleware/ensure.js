@@ -17,12 +17,14 @@ module.exports = {
           if (apiKey) {
             next();
           } else {
-            res.send({
-              errors: {
-                message: "Invalid API token",
-                status: 401,
-              },
-            });
+            res
+              .json({
+                errors: {
+                  message: "Invalid API token",
+                  status: 401,
+                },
+              })
+              .sendStatus(401);
           }
         }
       });
